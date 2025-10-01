@@ -47,8 +47,8 @@ get_pbp_game <- function(game_ids, extra_parse = T) {
 single_game_pbp <- function(game_id, extra_parse) {
   
   ### Get Play-by-Play Data
-  base_url <- "https://www.espn.com/mens-college-basketball/playbyplay?gameId="
-  summary_url <- "https://www.espn.com/mens-college-basketball/game?gameId="
+  base_url <- "https://www.espn.com/womens-college-basketball/playbyplay?gameId="
+  summary_url <- "https://www.espn.com/womens-college-basketball/game?gameId="
   url <- paste(base_url, game_id, sep = "")
   
   ### Try and get PBP data

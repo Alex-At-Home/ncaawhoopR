@@ -8,7 +8,7 @@
 #'   First team in list is away team, second is home team.
 #' @export
 get_boxscore <- function(game_id) {
-  url <- paste0("https://www.espn.com/mens-college-basketball/boxscore?gameId=", game_id)
+  url <- paste0("https://www.espn.com/womens-college-basketball/boxscore?gameId=", game_id)
   txt <- RCurl::getURL(url)
   
   x <- strsplit(txt, 'bxscr')[[1]]

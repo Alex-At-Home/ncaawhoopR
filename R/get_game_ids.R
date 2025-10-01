@@ -16,7 +16,7 @@ get_game_ids <- function(team, season = current_season) {
     ids <- create_ids_df()
   }
   
-  base_url <- "https://www.espn.com/mens-college-basketball/team/schedule/_/id/"
+  base_url <- "https://www.espn.com/womens-college-basketball/team/schedule/_/id/"
   url <- paste0(base_url, ids$id[ids$team == team], "/season/", as.numeric(substring(season, 1, 4)) + 1)
   
   x <- RCurl::getURL(url)

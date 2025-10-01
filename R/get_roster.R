@@ -21,7 +21,7 @@ get_roster <- function(team, season = current_season) {
   }
   
   if(season == current_season) {
-    base_url <- "https://www.espn.com/mens-college-basketball/team/roster/_/id/"
+    base_url <- "https://www.espn.com/womens-college-basketball/team/roster/_/id/"
     url <-  paste(base_url, ids$id[ids$team == team], "/", ids$link[ids$team == team], sep = "")
     content <- RCurl::getURL(url)
     tmp <- try(XML::readHTMLTable(content))
@@ -34,7 +34,7 @@ get_roster <- function(team, season = current_season) {
     # links for player images, extract each player id
     player_ids <- XML::getHTMLLinks(content) %>%
       # keep only links with this pattern
-      stringr::str_subset(., "mens-college-basketball/player/_/id") %>%
+      stringr::str_subset(., "womens-college-basketball/player/_/id") %>%
       # there are always two of each
       unique() %>%
       # extract the 7 digit player id
@@ -46,7 +46,7 @@ get_roster <- function(team, season = current_season) {
     tmp$number <- as.numeric(gsub("[^0-9]", "", tmp$name))
     tmp$name <- gsub("[0-9]*", "", tmp$name)
     # player image is found at this link
-    tmp$player_image <- paste0("https://a.espncdn.com/combiner/i?img=/i/headshots/mens-college-basketball/players/full/", player_ids, ".png")
+    tmp$player_image <- paste0("https://a.espncdn.com/combiner/i?img=/i/headshots/womens-college-basketball/players/full/", player_ids, ".png")
     tmp$player_id <- suppressWarnings(as.numeric(player_ids))
     tmp <- dplyr::arrange(tmp, number)
     tmp <- dplyr::select(tmp, player_id, number, name, position, height, weight, class, hometown, player_image)

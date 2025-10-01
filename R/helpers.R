@@ -9,7 +9,7 @@ create_ids_df <- function() {
 
 ################################# Checks if Game is in NIT #####################
 is.nit <- function(game_id) {
-  url <- paste("http://www.espn.com/mens-college-basketball/playbyplay?gameId=", game_id, sep = "")
+  url <- paste("http://www.espn.com/womens-college-basketball/playbyplay?gameId=", game_id, sep = "")
   y <- scan(url, what = "", sep = "\n", quiet = TRUE)
   if(any(grepl("NIT SEASON TIP-OFF", y))) {
     return(FALSE)
@@ -283,7 +283,7 @@ get_line <- function(data) {
 
 ### Get Date of Given Game
 get_date <- function(game_id) {
-  url <- paste0("https://www.espn.com/mens-college-basketball/playbyplay?gameId=", game_id)
+  url <- paste0("https://www.espn.com/womens-college-basketball/playbyplay?gameId=", game_id)
   txt <- try(RCurl::getURL(url), silent = TRUE)
   x <- strsplit(txt, 'Men&#x27;s College Basketball Play-By-Play')[[1]]
   date <- as.Date(stripwhite(gsub('^.*-\\s+', '', gsub('\\|.*$', '', x[2]))), '%b %d, %Y')

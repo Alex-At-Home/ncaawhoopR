@@ -19,7 +19,7 @@ get_master_schedule <- function(date) {
   
   
   date_ <- gsub("-", "", as.character(date))
-  url <- paste0("https://www.espn.com/mens-college-basketball/schedule/_/date/", date_)
+  url <- paste0("https://www.espn.com/womens-college-basketball/schedule/_/date/", date_)
   
   z <- XML::readHTMLTable(RCurl::getURL(url))
   
@@ -88,7 +88,7 @@ get_master_schedule <- function(date) {
   }
   
   x <- RCurl::getURL(url)
-  in_progress <- strsplit(x, "/mens-college-basketball/game\\?gameId=")[[1]]
+  in_progress <- strsplit(x, "/womens-college-basketball/game\\?gameId=")[[1]]
   if(date == Sys.Date() & length(in_progress) != 1) {
     ix <- grepl('class=\"Schedule__liveLink ', in_progress) | grepl('^\\d+\">\\d+:\\d+\\s?PM', in_progress)
     ix_completed <- !ix
@@ -99,7 +99,7 @@ get_master_schedule <- function(date) {
     in_progress <- in_progress[!is.na(in_progress) & !duplicated(in_progress)]
     
     x <- RCurl::getURL(url)
-    x <- strsplit(x, "/mens-college-basketball/game\\?gameId=")[[1]]
+    x <- strsplit(x, "/womens-college-basketball/game\\?gameId=")[[1]]
     x <- x[ix_completed]
     x <- suppressWarnings(as.numeric(unname(sapply(x, function(y){ substring(y, 1, 9) }))))
     x <- x[!is.na(x) & !duplicated(x)]
@@ -110,7 +110,7 @@ get_master_schedule <- function(date) {
     in_progress <- suppressWarnings(as.numeric(unname(sapply(in_progress, function(y){ substring(y, 1, 9) }))))
     in_progress <- in_progress[!is.na(in_progress) & !duplicated(in_progress)]
     
-    x <- strsplit(x, "/mens-college-basketball/game/_/gameId/")
+    x <- strsplit(x, "/womens-college-basketball/game/_/gameId/")
     x <- suppressWarnings(as.numeric(unname(sapply(x, function(y){ substring(y, 1, 9) }))))
     x <- x[-1]
     
@@ -122,7 +122,7 @@ get_master_schedule <- function(date) {
   
   
   
-  # x <- strsplit(x, "/mens-college-basketball/game/_/gameId/")
+  # x <- strsplit(x, "/womens-college-basketball/game/_/gameId/")
   # x <- suppressWarnings(as.numeric(unname(sapply(x, function(y){ substring(y, 1, 9) }))))
   # x <- x[-1]
   # if(date == Sys.Date()) {

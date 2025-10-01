@@ -17,7 +17,7 @@ get_shot_locs <- function(game_ids) {
   for (i in 1:n_games) {
     message(paste("Getting Shots for Game", i, "of", n_games))
     url <- paste0(
-      "https://www.espn.com/mens-college-basketball/playbyplay?gameId=",
+      "https://www.espn.com/womens-college-basketball/playbyplay?gameId=",
       game_ids[i]
     )
 

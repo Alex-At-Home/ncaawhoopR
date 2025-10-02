@@ -24,7 +24,6 @@ Imports:
     xml2,
     XML,
     stringdist,
-    igraph,
     circlize,
     RCurl,
     cowplot,
@@ -35,9 +34,7 @@ Imports:
     rvest,
     readr,
     purrr,
-    ggimage,
     plyr,
-    sportyR,
     gginnards,
     magrittr
 License: MIT + file LICENSE
